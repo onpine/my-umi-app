@@ -5,13 +5,13 @@ export default defineConfig({
     type: 'none',
   },
   dva: {},
-  // proxy: {
-  //   '/api': {
-  //     target: 'https://pvp.qq.com',
-  //     changeOrigin: true,
-  //     pathRewrite: { '^/api': '' },
-  //   },
-  // },
+  proxy: {
+    '/api': {
+      target: 'https://pvp.qq.com',
+      changeOrigin: true,
+      pathRewrite: { '^/api': '' },
+    },
+  },
   // routes: [
   //   { path: '/', component: '@/pages/index' },
   // ],

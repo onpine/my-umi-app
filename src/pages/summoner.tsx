@@ -12,6 +12,7 @@ const Summoner: FC<PageProps> = (props) => {
     <div>
       <h1 className={styles.title}>Page summoner</h1>
       <h2>This is {props.summoner.name}</h2>
+      <h2>This is {JSON.stringify(props.summoner)}</h2>
     </div>
   );
 };

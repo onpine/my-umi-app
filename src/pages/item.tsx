@@ -12,6 +12,7 @@ const Item: FC<PageProps> = (props) => {
     <div>
       <h1 className={styles.title}>Page item</h1>
       <h2>This is {props.item.name}</h2>
+      <h2>This is {JSON.stringify(props.item)})</h2>
     </div>
   );
 };
