@@ -3,8 +3,19 @@ import { Layout, Menu } from 'antd';
 const { Header, Content, Footer } = Layout;
 
 import styles from './index.less';
+import { Link } from 'umi';
+
+const menuData = [
+  { route: '/hero', name: '英雄' },
+  { route: '/item', name: '局内道具' },
+  { route: '/summoner', name: '召唤师技能' },
+];
 
 function BasicLayout(props: any) {
+  const {
+    location: { pathname },
+    children,
+  } = props;
   return (
     <div>
       <Layout>
@@ -13,17 +24,19 @@ function BasicLayout(props: any) {
           <Menu
             theme="dark"
             mode="horizontal"
-            defaultSelectedKeys={['1']}
+            defaultSelectedKeys={[pathname]}
             style={{ lineHeight: '64px' }}
           >
-            <Menu.Item key="1">英雄</Menu.Item>
-            <Menu.Item key="2">局内道具</Menu.Item>
-            <Menu.Item key="3">召唤师技能</Menu.Item>
+            {menuData.map((menu) => (
+              <Menu.Item key={`${menu.route}`}>
+                <Link to={menu.route}>{menu.name}</Link>
+              </Menu.Item>
+            ))}
           </Menu>
         </Header>
         <Content style={{ padding: '0 50px' }}>
           <div style={{ background: '#fff', padding: 24, minHeight: 280 }}>
-            {props.children}
+            {children}
           </div>
         </Content>
         <Footer style={{ textAlign: 'center' }}>Umi 入门</Footer>
