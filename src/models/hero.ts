@@ -1,4 +1,4 @@
-import { Effect, Reducer, Subscription } from 'umi';
+import { Effect, Reducer, Subscription, request } from 'umi';
 
 export interface HeroModelState {
   name: string;
@@ -29,7 +29,8 @@ const HeroModel: HeroModelType = {
   effects: {
     *query({ payload }, { call, put }) {},
     *fetch({ type, payload }, { put, call, select }) {
-      const data = [
+      const data = yield request('/web201605/js/herolist.json');
+      const localData = [
         {
           ename: 105,
           cname: '廉颇',
@@ -50,7 +51,7 @@ const HeroModel: HeroModelType = {
       yield put({
         type: 'save',
         payload: {
-          heros: data,
+          heros: data || localData,
         },
       });
     },
